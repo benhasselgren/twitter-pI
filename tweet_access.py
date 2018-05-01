@@ -36,3 +36,17 @@ for label, data in (('Text', status_texts), ('Screen Name', screen_names), ('Wor
         [table.add_row(entry) for entry in counter.most_common()[:10]]
         table.align[label], table.align['Count'] = 'l', 'r' # align the columns
         print(table)
+        
+def get_lexical_diversity(items):
+    return 1.0*len(set(items))/len(items)
+
+def get_average_words(tweets):
+    total_words = sum([len(tweet.split()) for tweet in tweets ])
+    return 1.0*total_words/len(tweets)
+
+print("Average Words: {0}".format(get_average_words(status_texts)))
+print("Word diversity: {0}".format(get_lexical_diversity(words)))
+print("Screen name diversity: {0}".format(get_lexical_diversity(screen_names)))
+print("Screen name diversity: {0}".format(get_lexical_diversity(screen_names)))
+print("Hashtag diversity: {0}".format(get_lexical_diversity(hashtags)))
+    
