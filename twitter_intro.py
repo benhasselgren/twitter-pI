@@ -13,7 +13,22 @@ auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 DUB_WOE_ID = 560743
+LON_WOE_ID = 44418
+LA_WOE_ID = 2442047
 
 dub_trends = api.trends_place(DUB_WOE_ID)
+lon_trends = api.trends_place(LON_WOE_ID)
+la_trends = api.trends_place(LA_WOE_ID)
 
-print(json.dumps(dub_trends, indent=1))
+dub_trends_set = set([trend['name']
+                    for trend in dub_trends[0]['trends']])
+
+lon_trends_set = set([trend['name']
+                    for trend in lon_trends[0]['trends']])
+                    
+la_trends_set = set([trend['name']
+                    for trend in la_trends[0]['trends']])
+                    
+common_trends = set.intersection(dub_trends_set, lon_trends_set, la_trends_set)
+
+print(common_trends)
